@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script>
+        var score = 0;
+        var counterclik = 1;
+        var price = 50;
+        var multiplier = document.getElementById('multi');
+
+        function increase() {
+            score = score + 1;
+            var view = document.getElementById('view');
+            view.innerHTML = score;
+        }
+
+        function multi() {
+            if (score >= price) {
+                counterclik = counterclik * 2;
+                score = score - price;
+                price = price * 2;
+                var result = document.getElementById('result');
+                result.innerHTML = "multiply x" + counterclik + " next multiply, price " + price;
+            }
+        }
+
+        function auto() {
+            if (score > 20) {
+                score = score - 20;
+                var next = document.getElementById('next');
+                setInterval(function () {
+                    score = score + 1;
+                    var view = document.getElementById('view');
+                    view.innerHTML = score;
+                }, 500);
+                next.innerHTML = score;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="display">
+        <p id="view">0</p>
+        <button onclick="increase()">click</button>
+
+        <button id="result" onclick="multi()">multiply</button>
+        <p id="next">0</p>
+        <button onclick="auto()">Autoclicker</button>
+    </div>
+</body>
+
+</html>
